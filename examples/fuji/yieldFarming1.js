@@ -23,7 +23,7 @@ async function main() {
   );
 
   const mcv3 = new ethers.Contract(
-    utilities.addresses.router,
+    utilities.addresses.masterChefV3,
     [
       
     ],

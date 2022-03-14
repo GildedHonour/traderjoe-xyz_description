@@ -27,7 +27,9 @@ export const addresses = {
 
   mine: "0x8935737fE9f2ba410d48a625575858CB9b5Bf279",
   token0: "0xcf1954aC926E559d84B7ADc334Fe7E071860d269", //(JoeToken)
-  token1: USDC_ADDR
+  token1: USDC_ADDR,
+
+  masterChefV3: ""
 };
 
 export function minutesFromNow(minAmount) {
