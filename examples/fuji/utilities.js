@@ -20,6 +20,7 @@ dotenv.config();
 
 //FUJI
 export const addresses = {
+  zero = "0x0000000000000000000000000000000000000000",
   WAVAX: WAVAX_ADDR,
 
   // router: "0xD8D37bA976D29D55c70Bc4f025Da14BD3013CDda",  //our Router02 contract - for some reason it'll cause an error
@@ -29,7 +30,8 @@ export const addresses = {
   token0: "0xcf1954aC926E559d84B7ADc334Fe7E071860d269", //(JoeToken)
   token1: USDC_ADDR,
 
-  masterChefV3: ""
+  masterChefV3: "",
+  joeLP: ""
 };
 
 export function minutesFromNow(minAmount) {

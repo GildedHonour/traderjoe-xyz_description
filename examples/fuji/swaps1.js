@@ -4,12 +4,14 @@ import * as utilities from './utilities.js'
 const SWAP_EXACT_AVAX_FOR_TOKENS_FUNC_ABI = "function swapExactAVAXForTokens(uint amountOutMin, address[] calldata path, address to, uint deadline) external payable returns (uint256[] memory amounts)";
 
 async function main() {
+  //TODO: into 'utilities'
   const AVAXAmount = ethers.utils.parseEther('0.000001').toHexString();
   const gasPrice = ethers.utils.parseUnits('200', 'gwei');
   const gas = {
     gasPrice: gasPrice,
     gasLimit: 300000
   };
+
 
   const router = new ethers.Contract(
     utilities.addresses.router,

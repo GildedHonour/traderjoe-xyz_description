@@ -7,7 +7,11 @@ const LP_ID = 123; //TODO - does it have to be found out from a DEX?
 
 async function main() {
   const AVAXAmount = ethers.utils.parseEther('0.000001').toHexString();
+
+  //большое кол-во; используется тут только для простоты
+  //в реальном проэкте нужно будет использовать только то кол-во, которое необходимо
   const largeAmount = ethers.utils.parseEther('100');
+
   const gasPrice = ethers.utils.parseUnits('200', 'gwei');
   const gas = {
     gasPrice: gasPrice,
@@ -15,21 +19,38 @@ async function main() {
   };
 
   const MASTER_CHEFV3_ARTIF = JSON.parse(fs.readFileSync(utilities.MASTER_CHEFV3_ARTIF_FILE_NAME));
-
-  const router = new ethers.Contract(
+  const mcv3 = new ethers.Contract(
     MASTER_CHEFV3_ARTIF.address,
     MASTER_CHEFV3_ARTIF.abi,
     utilities.account
   );
 
-  const mcv3 = new ethers.Contract(
-    utilities.addresses.masterChefV3,
-    [
-      
-    ],
-    utilities.account
-  );
+
+  //
   //TODO
+  //
+
+  const lpt0 = new ethers.Contract(
+      //for simplicity ; instead it should be Joe LP token (JoePair)
+      utilities.addresses.WAVAX, 
+      [
+        ERC20_ABI
+      ],
+      utilities.account
+  );
+  await utilities.approveERC20Token(lpt0, router.address, largeAmount);
+
+  const deposAmount = ethers.utils.parseUnits('0.001', 'gwei');
+  
+  //предварительно добавить WAVAX в LP
+  // const tx = await mcv3.add(1, lpt0, utilities.addresses.zero);
+  const tx = await mcv3.deposit(
+    LP_ID, //TODO
+    deposAmount
+  );
+
+
+
 }
 
 main()
